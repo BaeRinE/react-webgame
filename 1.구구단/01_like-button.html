@@ -1,0 +1,46 @@
+<html>
+  <head> </head>
+  <body>
+    <div id="root"></div>
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+    <!--
+          실무에선 하단의 것으로 바꿔줘야 함. 위는 개발용, 밑은 배포용
+          근데 사실, 하단의 것을 실무에서 쓸 일은 없다. 실무에선 웹팩,바이트,바벨 이런걸로 처리할 것이기 때문에..
+          원시적인 형태부터 시작하기 위해 이렇게 한 것임
+        -->
+    <!--<script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>-->
+    <!--<script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>-->
+    <script>
+      "use strict";
+
+      const e = React.createElement;
+
+      // 1. 클래스로 하는 방식
+      // * 이제 안쓰이는 방식
+      // * 한 1%정도만 쓰는데 ErrorBoundary에서만 씀
+      // * 레거시 코드 중에 클래스 방식으로됀 경우가 많으니 수업함
+      class LikeButton extends React.Component {
+        constructor(props) {
+          super(props);
+          this.state = { liked: false };
+        }
+
+        render() {
+          if (this.state.liked) {
+            return "You liked this";
+          }
+
+          return e("button", { onClick: () => this.setState({ liked: true }) }, "Like");
+        }
+      }
+
+      // 2. 함수로 하는 방식
+      // const LikeButton = () => {};
+      // function LikeButton() {}
+    </script>
+    <script>
+      ReactDOM.createRoot(document.querySelector("#root")).render(e(LikeButton));
+    </script>
+  </body>
+</html>
